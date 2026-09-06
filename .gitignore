@@ -4,6 +4,9 @@ _style-settings-src/
 *.yaml
 backups/
 
+# Keep the optional agent skill metadata in the public package
+!skills/obsidian-translation-patch/agents/openai.yaml
+
 # Local/editor files
 .obsidian/
 node_modules/

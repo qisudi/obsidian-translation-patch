@@ -1,0 +1,8 @@
+interface:
+  display_name: "Obsidian Translation Patch"
+  short_description: "Extract, translate, and validate Obsidian patches"
+  brand_color: "#7B61FF"
+  default_prompt: "Use $obsidian-translation-patch to generate a complete, validated translation patch for this Obsidian plugin or theme."
+
+policy:
+  allow_implicit_invocation: true

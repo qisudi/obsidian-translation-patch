@@ -55,3 +55,7 @@
 - 运行时规则发生在界面渲染后；启用“注入插件源码”时，精确规则也会写入目标插件的 `main.js`，修改前自动备份。主题补丁应设置 `"source": false`，不会修改主题 CSS。
 - 如果某个插件把文字绘制在 Canvas、图片或 Shadow DOM 内，普通 DOM 补丁无法覆盖，需要针对该插件编写专用适配规则。
 - 补丁文件格式错误时会被跳过，并在“重新加载”时提示跳过数量。
+
+## 给其他 Agent 使用
+
+仓库中的 `skills/obsidian-translation-patch/` 是可安装的技能目录，包含提取、翻译、校验和安装补丁的完整流程。支持技能目录的 Agent 可以直接安装该目录；不支持安装技能的 Agent 可以复制其中的 `obsidian-translation-patch-agent.txt`，作为一段完整指令发送给 Agent。
