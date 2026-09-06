@@ -1,0 +1,1689 @@
+{
+  "schemaVersion": 1,
+  "id": "minimal-style-settings-zh",
+  "name": "Minimal 主题 Style Settings 中文补丁",
+  "enabled": true,
+  "target": {
+    "pluginId": "obsidian-style-settings",
+    "theme": "Minimal",
+    "source": false
+  },
+  "translations": [
+    {
+      "source": "Documentation",
+      "target": "使用说明"
+    },
+    {
+      "source": "Use the Minimal Theme Settings plugin to set hotkeys, adjust features, select fonts, and choose from preset color schemes. Use the settings below for more granular customization. Go to https://minimal.guide for documentation.",
+      "target": "请使用 Minimal Theme Settings 插件设置快捷键、调整功能、选择字体和预设配色方案；下方设置用于更细致的自定义。文档见 https://minimal.guide。"
+    },
+    {
+      "source": "Interface colors",
+      "target": "界面颜色"
+    },
+    {
+      "source": "Base color",
+      "target": "基础颜色"
+    },
+    {
+      "source": "Defines all background and border colors unless overridden in more granular settings",
+      "target": "定义所有背景和边框颜色，除非被更细分的设置覆盖。"
+    },
+    {
+      "source": "Primary background",
+      "target": "主要背景"
+    },
+    {
+      "source": "Background color for the main window",
+      "target": "主窗口的背景颜色。"
+    },
+    {
+      "source": "Secondary background",
+      "target": "次要背景"
+    },
+    {
+      "source": "Background color for left sidebar and menus",
+      "target": "左侧边栏和菜单的背景颜色。"
+    },
+    {
+      "source": "Active background",
+      "target": "活动项背景"
+    },
+    {
+      "source": "Background color for hovered buttons and currently selected file",
+      "target": "悬停按钮及当前所选文件的背景颜色。"
+    },
+    {
+      "source": "Border color",
+      "target": "边框颜色"
+    },
+    {
+      "source": "For buttons, divider lines, and outlined elements",
+      "target": "用于按钮、分隔线和描边元素。"
+    },
+    {
+      "source": "Highlighted border color",
+      "target": "高亮边框颜色"
+    },
+    {
+      "source": "Used when hovering over buttons, dividers, and outlined elements",
+      "target": "用于悬停按钮、分隔线和描边元素时。"
+    },
+    {
+      "source": "Active border color",
+      "target": "活动边框颜色"
+    },
+    {
+      "source": "Used when clicking buttons and outlined elements",
+      "target": "用于点击按钮和描边元素时。"
+    },
+    {
+      "source": "Accent color",
+      "target": "强调色"
+    },
+    {
+      "source": "Used primarily for links",
+      "target": "主要用于链接。"
+    },
+    {
+      "source": "Accent color (hover)",
+      "target": "强调色（悬停）"
+    },
+    {
+      "source": "Used primarily for hovered links",
+      "target": "主要用于悬停状态的链接。"
+    },
+    {
+      "source": "Accent color interactive",
+      "target": "交互强调色"
+    },
+    {
+      "source": "Used for buttons, checklists, toggles",
+      "target": "用于按钮、复选清单和开关。"
+    },
+    {
+      "source": "Text on accent",
+      "target": "强调色上的文字"
+    },
+    {
+      "source": "Used primarily for text on accented buttons",
+      "target": "主要用于强调色按钮上的文字。"
+    },
+    {
+      "source": "Extended colors",
+      "target": "扩展颜色"
+    },
+    {
+      "source": "Red",
+      "target": "红色"
+    },
+    {
+      "source": "Extended palette colors are defaults used for progress bar status, syntax highlighting, colorful headings, and graph nodes",
+      "target": "扩展调色板颜色默认用于进度条状态、语法高亮、彩色标题和关系图谱节点。"
+    },
+    {
+      "source": "Orange",
+      "target": "橙色"
+    },
+    {
+      "source": "Yellow",
+      "target": "黄色"
+    },
+    {
+      "source": "Green",
+      "target": "绿色"
+    },
+    {
+      "source": "Cyan",
+      "target": "青色"
+    },
+    {
+      "source": "Blue",
+      "target": "蓝色"
+    },
+    {
+      "source": "Purple",
+      "target": "紫色"
+    },
+    {
+      "source": "Pink",
+      "target": "粉色"
+    },
+    {
+      "source": "Bases",
+      "target": "Bases 数据库"
+    },
+    {
+      "source": "Toolbar opacity",
+      "target": "工具栏不透明度"
+    },
+    {
+      "source": "Table header icons",
+      "target": "表头图标"
+    },
+    {
+      "source": "Visible",
+      "target": "显示"
+    },
+    {
+      "source": "Hidden",
+      "target": "隐藏"
+    },
+    {
+      "source": "Table row height",
+      "target": "表格行高"
+    },
+    {
+      "source": "Blockquotes",
+      "target": "引用块"
+    },
+    {
+      "source": "Blockquote text color",
+      "target": "引用块文字颜色"
+    },
+    {
+      "source": "Blockquote background color",
+      "target": "引用块背景颜色"
+    },
+    {
+      "source": "Blockquote border color",
+      "target": "引用块边框颜色"
+    },
+    {
+      "source": "Blockquote border thickness",
+      "target": "引用块边框粗细"
+    },
+    {
+      "source": "Blockquote font size",
+      "target": "引用块字体大小"
+    },
+    {
+      "source": "Accepts any CSS font-size value",
+      "target": "接受任意有效的 CSS font-size 值。"
+    },
+    {
+      "source": "Blockquote font style",
+      "target": "引用块字体样式"
+    },
+    {
+      "source": "Normal",
+      "target": "正常"
+    },
+    {
+      "source": "Italic",
+      "target": "斜体"
+    },
+    {
+      "source": "Callouts",
+      "target": "标注框"
+    },
+    {
+      "source": "Callout style",
+      "target": "标注框样式"
+    },
+    {
+      "source": "Filled",
+      "target": "填充"
+    },
+    {
+      "source": "Outlined",
+      "target": "描边"
+    },
+    {
+      "source": "Color blending",
+      "target": "颜色混合"
+    },
+    {
+      "source": "Blend the color of nested callouts",
+      "target": "混合嵌套标注框的颜色。"
+    },
+    {
+      "source": "On",
+      "target": "开启"
+    },
+    {
+      "source": "Off",
+      "target": "关闭"
+    },
+    {
+      "source": "Canvas",
+      "target": "白板"
+    },
+    {
+      "source": "Canvas dot pattern",
+      "target": "白板点阵图案"
+    },
+    {
+      "source": "Color for background dot pattern",
+      "target": "背景点阵图案的颜色。"
+    },
+    {
+      "source": "Code blocks",
+      "target": "代码块"
+    },
+    {
+      "source": "Code font size",
+      "target": "代码字体大小"
+    },
+    {
+      "source": "Scroll long lines",
+      "target": "长行水平滚动"
+    },
+    {
+      "source": "Turns off line wrap for code",
+      "target": "关闭代码自动换行。"
+    },
+    {
+      "source": "Code background color",
+      "target": "代码背景颜色"
+    },
+    {
+      "source": "Background for code blocks",
+      "target": "代码块的背景。"
+    },
+    {
+      "source": "Code text color",
+      "target": "代码文字颜色"
+    },
+    {
+      "source": "Color of code when syntax highlighting is not present",
+      "target": "没有语法高亮时的代码颜色。"
+    },
+    {
+      "source": "Syntax highlighting",
+      "target": "语法高亮"
+    },
+    {
+      "source": "\"Syntax: comments\"",
+      "target": "语法：注释"
+    },
+    {
+      "source": "Syntax highlighting for comments",
+      "target": "注释的语法高亮颜色。"
+    },
+    {
+      "source": "\"Syntax: functions\"",
+      "target": "语法：函数"
+    },
+    {
+      "source": "Syntax highlighting for functions",
+      "target": "函数的语法高亮颜色。"
+    },
+    {
+      "source": "\"Syntax: keywords\"",
+      "target": "语法：关键字"
+    },
+    {
+      "source": "Syntax highlighting for keywords",
+      "target": "关键字的语法高亮颜色。"
+    },
+    {
+      "source": "\"Syntax: important\"",
+      "target": "语法：重要文字"
+    },
+    {
+      "source": "Syntax highlighting for important text",
+      "target": "重要文字的语法高亮颜色。"
+    },
+    {
+      "source": "\"Syntax: operators\"",
+      "target": "语法：运算符"
+    },
+    {
+      "source": "Syntax highlighting for operators",
+      "target": "运算符的语法高亮颜色。"
+    },
+    {
+      "source": "\"Syntax: properties\"",
+      "target": "语法：属性"
+    },
+    {
+      "source": "Syntax highlighting for properties",
+      "target": "属性的语法高亮颜色。"
+    },
+    {
+      "source": "\"Syntax: punctuation\"",
+      "target": "语法：标点符号"
+    },
+    {
+      "source": "Syntax highlighting for punctuation",
+      "target": "标点符号的语法高亮颜色。"
+    },
+    {
+      "source": "\"Syntax: strings\"",
+      "target": "语法：字符串"
+    },
+    {
+      "source": "Syntax highlighting for strings",
+      "target": "字符串的语法高亮颜色。"
+    },
+    {
+      "source": "\"Syntax: tags\"",
+      "target": "语法：标签"
+    },
+    {
+      "source": "Syntax highlighting for tags",
+      "target": "标签的语法高亮颜色。"
+    },
+    {
+      "source": "\"Syntax: values\"",
+      "target": "语法：值"
+    },
+    {
+      "source": "Syntax highlighting for values",
+      "target": "值的语法高亮颜色。"
+    },
+    {
+      "source": "Trim Dataview columns",
+      "target": "截断 Dataview 列内容"
+    },
+    {
+      "source": "Disables word wrapping in table cells, and trims long text",
+      "target": "禁用表格单元格内自动换行，并截断过长文字。"
+    },
+    {
+      "source": "Force tables lists inline",
+      "target": "强制表格列表行内显示"
+    },
+    {
+      "source": "Makes lists inside of table cells inline and comma separated",
+      "target": "将表格单元格内的列表改为行内显示，并以逗号分隔。"
+    },
+    {
+      "source": "Dataview maximum column width",
+      "target": "Dataview 最大列宽"
+    },
+    {
+      "source": "Maximum width for Dataview columns, accepts any CSS width value",
+      "target": "Dataview 列的最大宽度；接受任意有效的 CSS 宽度值。"
+    },
+    {
+      "source": "Embeds and transclusions",
+      "target": "嵌入与引用"
+    },
+    {
+      "source": "Use strict embed style globally",
+      "target": "全局使用严格嵌入样式"
+    },
+    {
+      "source": "Transclusions appear seamlessly in the flow of text. Can be enabled per file using the embed-strict helper class",
+      "target": "使引用内容无缝融入正文。可使用 embed-strict 辅助类对单个文件启用。"
+    },
+    {
+      "source": "Hide embed titles",
+      "target": "隐藏嵌入标题"
+    },
+    {
+      "source": "Hide title of the transcluded file (if strict embed is off)",
+      "target": "隐藏被引用文件的标题（严格嵌入关闭时）。"
+    },
+    {
+      "source": "Underline embedded text",
+      "target": "为嵌入文字添加下划线"
+    },
+    {
+      "source": "Transcluded text is underlined. Can be enabled per file using the embed-underline helper class",
+      "target": "为引用文字添加下划线。可使用 embed-underline 辅助类对单个文件启用。"
+    },
+    {
+      "source": "Maximum height of embeds",
+      "target": "嵌入内容最大高度"
+    },
+    {
+      "source": "For transcluded text, accepts valid CSS units",
+      "target": "用于引用的文字；接受有效的 CSS 单位。"
+    },
+    {
+      "source": "Embedded text underline style",
+      "target": "嵌入文字下划线样式"
+    },
+    {
+      "source": "Requires underlines to be enabled",
+      "target": "需要先启用下划线。"
+    },
+    {
+      "source": "Solid",
+      "target": "实线"
+    },
+    {
+      "source": "Dashed",
+      "target": "虚线"
+    },
+    {
+      "source": "Dotted",
+      "target": "点线"
+    },
+    {
+      "source": "Double",
+      "target": "双线"
+    },
+    {
+      "source": "Wavy",
+      "target": "波浪线"
+    },
+    {
+      "source": "Embedded text underline color",
+      "target": "嵌入文字下划线颜色"
+    },
+    {
+      "source": "Embed background",
+      "target": "嵌入内容背景"
+    },
+    {
+      "source": "Graphs",
+      "target": "关系图谱"
+    },
+    {
+      "source": "Line color",
+      "target": "连线颜色"
+    },
+    {
+      "source": "Changing graph colors requires closing and reopening graph panes or restarting Obsidian",
+      "target": "更改关系图谱颜色后，需要关闭并重新打开图谱窗格，或重启 Obsidian。"
+    },
+    {
+      "source": "Node color",
+      "target": "节点颜色"
+    },
+    {
+      "source": "Active node color",
+      "target": "活动节点颜色"
+    },
+    {
+      "source": "Tag node color",
+      "target": "标签节点颜色"
+    },
+    {
+      "source": "Attachment node color",
+      "target": "附件节点颜色"
+    },
+    {
+      "source": "Unresolved node color",
+      "target": "未解析节点颜色"
+    },
+    {
+      "source": "Headings",
+      "target": "标题"
+    },
+    {
+      "source": "Level 1 Headings",
+      "target": "1 级标题"
+    },
+    {
+      "source": "H1 font",
+      "target": "H1 字体"
+    },
+    {
+      "source": "Name of the font as it appears on your system",
+      "target": "字体在系统中显示的名称。"
+    },
+    {
+      "source": "H1 font size",
+      "target": "H1 字体大小"
+    },
+    {
+      "source": "H1 font weight",
+      "target": "H1 字重"
+    },
+    {
+      "source": "H1 text color",
+      "target": "H1 文字颜色"
+    },
+    {
+      "source": "H1 font variant",
+      "target": "H1 字体变体"
+    },
+    {
+      "source": "Small caps",
+      "target": "小型大写字母"
+    },
+    {
+      "source": "All small caps",
+      "target": "全部小型大写字母"
+    },
+    {
+      "source": "H1 font style",
+      "target": "H1 字体样式"
+    },
+    {
+      "source": "H1 divider line",
+      "target": "H1 分隔线"
+    },
+    {
+      "source": "Adds a border below the heading",
+      "target": "在标题下方添加边框。"
+    },
+    {
+      "source": "Level 2 Headings",
+      "target": "2 级标题"
+    },
+    {
+      "source": "H2 font",
+      "target": "H2 字体"
+    },
+    {
+      "source": "H2 font size",
+      "target": "H2 字体大小"
+    },
+    {
+      "source": "H2 font weight",
+      "target": "H2 字重"
+    },
+    {
+      "source": "H2 text color",
+      "target": "H2 文字颜色"
+    },
+    {
+      "source": "H2 font variant",
+      "target": "H2 字体变体"
+    },
+    {
+      "source": "H2 font style",
+      "target": "H2 字体样式"
+    },
+    {
+      "source": "H2 divider line",
+      "target": "H2 分隔线"
+    },
+    {
+      "source": "Level 3 Headings",
+      "target": "3 级标题"
+    },
+    {
+      "source": "H3 font",
+      "target": "H3 字体"
+    },
+    {
+      "source": "H3 font size",
+      "target": "H3 字体大小"
+    },
+    {
+      "source": "H3 font weight",
+      "target": "H3 字重"
+    },
+    {
+      "source": "H3 text color",
+      "target": "H3 文字颜色"
+    },
+    {
+      "source": "H3 font variant",
+      "target": "H3 字体变体"
+    },
+    {
+      "source": "H3 font style",
+      "target": "H3 字体样式"
+    },
+    {
+      "source": "H3 divider line",
+      "target": "H3 分隔线"
+    },
+    {
+      "source": "Level 4 Headings",
+      "target": "4 级标题"
+    },
+    {
+      "source": "H4 font",
+      "target": "H4 字体"
+    },
+    {
+      "source": "H4 font size",
+      "target": "H4 字体大小"
+    },
+    {
+      "source": "H4 font weight",
+      "target": "H4 字重"
+    },
+    {
+      "source": "H4 text color",
+      "target": "H4 文字颜色"
+    },
+    {
+      "source": "H4 font variant",
+      "target": "H4 字体变体"
+    },
+    {
+      "source": "H4 font style",
+      "target": "H4 字体样式"
+    },
+    {
+      "source": "H4 divider line",
+      "target": "H4 分隔线"
+    },
+    {
+      "source": "Level 5 Headings",
+      "target": "5 级标题"
+    },
+    {
+      "source": "H5 font",
+      "target": "H5 字体"
+    },
+    {
+      "source": "H5 font size",
+      "target": "H5 字体大小"
+    },
+    {
+      "source": "H5 font weight",
+      "target": "H5 字重"
+    },
+    {
+      "source": "H5 text color",
+      "target": "H5 文字颜色"
+    },
+    {
+      "source": "H5 font variant",
+      "target": "H5 字体变体"
+    },
+    {
+      "source": "H5 font style",
+      "target": "H5 字体样式"
+    },
+    {
+      "source": "H5 divider line",
+      "target": "H5 分隔线"
+    },
+    {
+      "source": "Level 6 Headings",
+      "target": "6 级标题"
+    },
+    {
+      "source": "H6 font",
+      "target": "H6 字体"
+    },
+    {
+      "source": "H6 font size",
+      "target": "H6 字体大小"
+    },
+    {
+      "source": "H6 font weight",
+      "target": "H6 字重"
+    },
+    {
+      "source": "H6 text color",
+      "target": "H6 文字颜色"
+    },
+    {
+      "source": "H6 font variant",
+      "target": "H6 字体变体"
+    },
+    {
+      "source": "H6 font style",
+      "target": "H6 字体样式"
+    },
+    {
+      "source": "H6 divider line",
+      "target": "H6 分隔线"
+    },
+    {
+      "source": "Icons",
+      "target": "图标"
+    },
+    {
+      "source": "Icon opacity (inactive)",
+      "target": "图标不透明度（未激活）"
+    },
+    {
+      "source": "Icon color",
+      "target": "图标颜色"
+    },
+    {
+      "source": "Icon color (hover)",
+      "target": "图标颜色（悬停）"
+    },
+    {
+      "source": "Icon color (active)",
+      "target": "图标颜色（活动）"
+    },
+    {
+      "source": "Icon color (focused)",
+      "target": "图标颜色（聚焦）"
+    },
+    {
+      "source": "Images",
+      "target": "图像"
+    },
+    {
+      "source": "Image opacity in dark mode",
+      "target": "深色模式图像不透明度"
+    },
+    {
+      "source": "Level of fading for images in dark mode. Hover over images to display at full brightness.",
+      "target": "深色模式中图像的淡化程度。将鼠标悬停在图像上可恢复完整亮度。"
+    },
+    {
+      "source": "Image radius",
+      "target": "图像圆角"
+    },
+    {
+      "source": "Rounded corners for images",
+      "target": "图像的圆角大小。"
+    },
+    {
+      "source": "Blend images in light mode",
+      "target": "在浅色模式中融合图像"
+    },
+    {
+      "source": "Allow images to blend into the color scheme background color",
+      "target": "让图像与配色方案的背景颜色融合。"
+    },
+    {
+      "source": "Image grid crop",
+      "target": "图像网格裁剪"
+    },
+    {
+      "source": "Sets how images get cropped in a grid",
+      "target": "设置图像在网格中的裁剪方式。"
+    },
+    {
+      "source": "Crop to fit",
+      "target": "裁剪以适应"
+    },
+    {
+      "source": "Show full image",
+      "target": "显示完整图像"
+    },
+    {
+      "source": "Image grid background",
+      "target": "图像网格背景"
+    },
+    {
+      "source": "Background of images in cells, useful when images are not cropped to fit",
+      "target": "单元格中图像的背景；图像未裁剪适应时尤其有用。"
+    },
+    {
+      "source": "Indentation guides",
+      "target": "缩进参考线"
+    },
+    {
+      "source": "Indentation guide color",
+      "target": "缩进参考线颜色"
+    },
+    {
+      "source": "Indentation guide color (active)",
+      "target": "缩进参考线颜色（活动）"
+    },
+    {
+      "source": "Links",
+      "target": "链接"
+    },
+    {
+      "source": "Internal links",
+      "target": "内部链接"
+    },
+    {
+      "source": "Internal link color",
+      "target": "内部链接颜色"
+    },
+    {
+      "source": "Internal link color (hover)",
+      "target": "内部链接颜色（悬停）"
+    },
+    {
+      "source": "Unresolved link opacity",
+      "target": "未解析链接不透明度"
+    },
+    {
+      "source": "Unresolved link color",
+      "target": "未解析链接颜色"
+    },
+    {
+      "source": "Unresolved link underline color",
+      "target": "未解析链接下划线颜色"
+    },
+    {
+      "source": "External links",
+      "target": "外部链接"
+    },
+    {
+      "source": "External link color",
+      "target": "外部链接颜色"
+    },
+    {
+      "source": "External link color (hover)",
+      "target": "外部链接颜色（悬停）"
+    },
+    {
+      "source": "Line  numbers",
+      "target": "行号"
+    },
+    {
+      "source": "Highlight active line",
+      "target": "高亮当前行"
+    },
+    {
+      "source": "Adds a background to current line in editor",
+      "target": "为编辑器中的当前行添加背景。"
+    },
+    {
+      "source": "Gutter offset",
+      "target": "编辑器边槽偏移"
+    },
+    {
+      "source": "Width of the file margin used for gutter",
+      "target": "编辑器边槽所用文件边距的宽度。"
+    },
+    {
+      "source": "Gutter background",
+      "target": "编辑器边槽背景"
+    },
+    {
+      "source": "Line number color",
+      "target": "行号颜色"
+    },
+    {
+      "source": "Active line number color",
+      "target": "当前行号颜色"
+    },
+    {
+      "source": "Active line background",
+      "target": "当前行背景"
+    },
+    {
+      "source": "Using a low opacity color is recommended to avoid conflicting with highlights",
+      "target": "建议使用低不透明度颜色，以免与高亮冲突。"
+    },
+    {
+      "source": "Lists and tasks",
+      "target": "列表与任务"
+    },
+    {
+      "source": "Checkbox color",
+      "target": "复选框颜色"
+    },
+    {
+      "source": "Background color for completed tasks",
+      "target": "已完成任务的背景颜色。"
+    },
+    {
+      "source": "Checkbox shape",
+      "target": "复选框形状"
+    },
+    {
+      "source": "Circle",
+      "target": "圆形"
+    },
+    {
+      "source": "Square",
+      "target": "方形"
+    },
+    {
+      "source": "Strike completed tasks",
+      "target": "划掉已完成任务"
+    },
+    {
+      "source": "Adds strikethrough line and greyed text for completed tasks",
+      "target": "为已完成任务添加删除线并使文字变灰。"
+    },
+    {
+      "source": "List item spacing",
+      "target": "列表项间距"
+    },
+    {
+      "source": "Vertical space between list items in em units",
+      "target": "列表项之间的垂直间距（em）。"
+    },
+    {
+      "source": "Nested list indentation",
+      "target": "嵌套列表缩进"
+    },
+    {
+      "source": "Horizontal space from left in em units",
+      "target": "距左侧的水平间距（em）。"
+    },
+    {
+      "source": "PDFs",
+      "target": "PDF"
+    },
+    {
+      "source": "PDF page style",
+      "target": "PDF 页面样式"
+    },
+    {
+      "source": "Borders and shadows around pages",
+      "target": "页面周围的边框和阴影。"
+    },
+    {
+      "source": "Seamless",
+      "target": "无缝"
+    },
+    {
+      "source": "Shadows",
+      "target": "阴影"
+    },
+    {
+      "source": "Invert PDFs in dark mode",
+      "target": "在深色模式中反转 PDF 颜色"
+    },
+    {
+      "source": "Best for working with black text on white pages",
+      "target": "适合处理白底黑字的页面。"
+    },
+    {
+      "source": "Blend PDFs in light mode",
+      "target": "在浅色模式中融合 PDF"
+    },
+    {
+      "source": "Allow PDFs to blend into the color scheme background color",
+      "target": "让 PDF 与配色方案的背景颜色融合。"
+    },
+    {
+      "source": "PDF opacity in dark mode",
+      "target": "深色模式 PDF 不透明度"
+    },
+    {
+      "source": "Fade PDF pages in dark mode",
+      "target": "在深色模式中淡化 PDF 页面。"
+    },
+    {
+      "source": "Progress bars",
+      "target": "进度条"
+    },
+    {
+      "source": "Completed progress bar color",
+      "target": "已完成进度条颜色"
+    },
+    {
+      "source": "Defaults to your accent color",
+      "target": "默认使用强调色。"
+    },
+    {
+      "source": "Properties",
+      "target": "属性"
+    },
+    {
+      "source": "Hide properties heading",
+      "target": "隐藏属性标题"
+    },
+    {
+      "source": "Hide \"Properties\" heading above properties",
+      "target": "隐藏属性上方的“属性”标题。"
+    },
+    {
+      "source": "Hide \"Add property\" button",
+      "target": "隐藏“添加属性”按钮"
+    },
+    {
+      "source": "Hide \"Add property\" button below properties",
+      "target": "隐藏属性下方的“添加属性”按钮。"
+    },
+    {
+      "source": "Hide property icons",
+      "target": "隐藏属性图标"
+    },
+    {
+      "source": "Hide icons next to property names",
+      "target": "隐藏属性名称旁的图标。"
+    },
+    {
+      "source": "Property row lines",
+      "target": "属性行分隔线"
+    },
+    {
+      "source": "Display borders between properties",
+      "target": "显示属性之间的边框。"
+    },
+    {
+      "source": "Property name width",
+      "target": "属性名称宽度"
+    },
+    {
+      "source": "Width for the name of the property",
+      "target": "属性名称的宽度。"
+    },
+    {
+      "source": "Sidebars",
+      "target": "侧边栏"
+    },
+    {
+      "source": "Sidebar tab style",
+      "target": "侧边栏标签页样式"
+    },
+    {
+      "source": "Index round",
+      "target": "圆形索引"
+    },
+    {
+      "source": "Index square",
+      "target": "方形索引"
+    },
+    {
+      "source": "Modern compact",
+      "target": "现代紧凑"
+    },
+    {
+      "source": "Modern wide",
+      "target": "现代宽版"
+    },
+    {
+      "source": "Underline",
+      "target": "下划线"
+    },
+    {
+      "source": "Sidebar tab names",
+      "target": "侧边栏标签页名称"
+    },
+    {
+      "source": "Single tab only",
+      "target": "仅单个标签页"
+    },
+    {
+      "source": "Vault profile position",
+      "target": "仓库资料位置"
+    },
+    {
+      "source": "Bottom",
+      "target": "底部"
+    },
+    {
+      "source": "Top",
+      "target": "顶部"
+    },
+    {
+      "source": "Hide help button",
+      "target": "隐藏帮助按钮"
+    },
+    {
+      "source": "Hide settings button",
+      "target": "隐藏设置按钮"
+    },
+    {
+      "source": "Mobile left sidebar width",
+      "target": "移动端左侧边栏宽度"
+    },
+    {
+      "source": "Maximum width for pinned left sidebar on mobile",
+      "target": "移动端固定左侧边栏的最大宽度。"
+    },
+    {
+      "source": "Mobile right sidebar width",
+      "target": "移动端右侧边栏宽度"
+    },
+    {
+      "source": "Maximum width for pinned right sidebar on mobile",
+      "target": "移动端固定右侧边栏的最大宽度。"
+    },
+    {
+      "source": "Ribbon",
+      "target": "功能区"
+    },
+    {
+      "source": "Ribbon style",
+      "target": "功能区样式"
+    },
+    {
+      "source": "Display options for ribbon menu. Ribbon must be turned on in Obsidian Appearance settings for these options to work.",
+      "target": "设置功能区菜单的显示方式。必须先在 Obsidian 的“外观”设置中启用功能区，这些选项才会生效。"
+    },
+    {
+      "source": "Default",
+      "target": "默认"
+    },
+    {
+      "source": "Expand (vertical)",
+      "target": "展开（垂直）"
+    },
+    {
+      "source": "Hover (vertical)",
+      "target": "悬停展开（垂直）"
+    },
+    {
+      "source": "Hover (horizontal)",
+      "target": "悬停展开（水平）"
+    },
+    {
+      "source": "Tables",
+      "target": "表格"
+    },
+    {
+      "source": "Table font size",
+      "target": "表格字体大小"
+    },
+    {
+      "source": "All of the following settings apply to all tables globally. To turn on these features on a per-note basis use helper classes. See documentation.",
+      "target": "以下设置会全局应用于所有表格。如需仅对个别笔记启用，请使用辅助类。详见文档。"
+    },
+    {
+      "source": "Minimum column width",
+      "target": "最小列宽"
+    },
+    {
+      "source": "Maximum column width",
+      "target": "最大列宽"
+    },
+    {
+      "source": "Maximize table width",
+      "target": "最大化表格宽度"
+    },
+    {
+      "source": "Determines how wide tables should behave when they become wider than the line width",
+      "target": "决定表格宽度超过行宽时的显示方式。"
+    },
+    {
+      "source": "Fit to line width",
+      "target": "适应行宽"
+    },
+    {
+      "source": "Overflow line width",
+      "target": "超出行宽"
+    },
+    {
+      "source": "Always fill",
+      "target": "始终填满"
+    },
+    {
+      "source": "Row lines",
+      "target": "行分隔线"
+    },
+    {
+      "source": "Display borders between table rows globally",
+      "target": "全局显示表格行之间的分隔线。"
+    },
+    {
+      "source": "Column lines",
+      "target": "列分隔线"
+    },
+    {
+      "source": "Display borders between table columns globally",
+      "target": "全局显示表格列之间的分隔线。"
+    },
+    {
+      "source": "Cell lines",
+      "target": "单元格边框"
+    },
+    {
+      "source": "Display borders around all table cells globally",
+      "target": "全局显示所有表格单元格的边框。"
+    },
+    {
+      "source": "Striped rows",
+      "target": "行交替底纹"
+    },
+    {
+      "source": "Display striped background in alternating table rows globally",
+      "target": "全局为表格行交替显示底纹。"
+    },
+    {
+      "source": "Striped columns",
+      "target": "列交替底纹"
+    },
+    {
+      "source": "Display striped background in alternating table columns globally",
+      "target": "全局为表格列交替显示底纹。"
+    },
+    {
+      "source": "Tabular figures",
+      "target": "等宽数字"
+    },
+    {
+      "source": "Use fixed width numbers in tables globally",
+      "target": "在所有表格中使用等宽数字。"
+    },
+    {
+      "source": "Row numbers",
+      "target": "行号"
+    },
+    {
+      "source": "Display row numbers in tables globally",
+      "target": "全局显示表格行号。"
+    },
+    {
+      "source": "Center small tables",
+      "target": "小型表格居中"
+    },
+    {
+      "source": "Make small tables centered",
+      "target": "使小型表格居中。"
+    },
+    {
+      "source": "Disable line wrap",
+      "target": "禁用自动换行"
+    },
+    {
+      "source": "Turn off line wrapping in table cells globally",
+      "target": "全局关闭表格单元格内的自动换行。"
+    },
+    {
+      "source": "Highlight active row",
+      "target": "高亮当前行"
+    },
+    {
+      "source": "Highlight rows on hover",
+      "target": "鼠标悬停时高亮行。"
+    },
+    {
+      "source": "Active row background",
+      "target": "活动行背景"
+    },
+    {
+      "source": "Background color for hovered tables rows",
+      "target": "鼠标悬停表格行时的背景颜色。"
+    },
+    {
+      "source": "Tabs",
+      "target": "标签页"
+    },
+    {
+      "source": "Tab bar height",
+      "target": "标签栏高度"
+    },
+    {
+      "source": "Tab style",
+      "target": "标签页样式"
+    },
+    {
+      "source": "Modern",
+      "target": "现代"
+    },
+    {
+      "source": "Tab text color",
+      "target": "标签页文字颜色"
+    },
+    {
+      "source": "Tab text color (active)",
+      "target": "标签页文字颜色（活动）"
+    },
+    {
+      "source": "Tab stacks",
+      "target": "标签页堆叠"
+    },
+    {
+      "source": "Stacked width",
+      "target": "堆叠标签页宽度"
+    },
+    {
+      "source": "Width of a stacked tab in pixels",
+      "target": "堆叠标签页的宽度（像素）。"
+    },
+    {
+      "source": "Spine width",
+      "target": "书脊宽度"
+    },
+    {
+      "source": "Width of the spine in pixels",
+      "target": "书脊宽度（像素）。"
+    },
+    {
+      "source": "Spine text orientation",
+      "target": "书脊文字方向"
+    },
+    {
+      "source": "Top flipped",
+      "target": "顶部翻转"
+    },
+    {
+      "source": "Bottom flipped",
+      "target": "底部翻转"
+    },
+    {
+      "source": "Center",
+      "target": "居中"
+    },
+    {
+      "source": "Center flipped",
+      "target": "居中翻转"
+    },
+    {
+      "source": "Spine element order",
+      "target": "书脊元素顺序"
+    },
+    {
+      "source": "Reversed",
+      "target": "反向"
+    },
+    {
+      "source": "Tags",
+      "target": "标签"
+    },
+    {
+      "source": "Plain tags",
+      "target": "纯文本标签"
+    },
+    {
+      "source": "Tags will render as normal text, overrides settings below",
+      "target": "标签将显示为普通文字，并覆盖下方设置。"
+    },
+    {
+      "source": "Tag shape",
+      "target": "标签形状"
+    },
+    {
+      "source": "Pill",
+      "target": "胶囊形"
+    },
+    {
+      "source": "Rounded",
+      "target": "圆角"
+    },
+    {
+      "source": "Tag border width",
+      "target": "标签边框宽度"
+    },
+    {
+      "source": "None",
+      "target": "无"
+    },
+    {
+      "source": "Thin",
+      "target": "细"
+    },
+    {
+      "source": "Thick",
+      "target": "粗"
+    },
+    {
+      "source": "Tag text color",
+      "target": "标签文字颜色"
+    },
+    {
+      "source": "Tag background color",
+      "target": "标签背景颜色"
+    },
+    {
+      "source": "Tag background color (hover)",
+      "target": "标签背景颜色（悬停）"
+    },
+    {
+      "source": "Text",
+      "target": "文字"
+    },
+    {
+      "source": "Normal text color",
+      "target": "普通文字颜色"
+    },
+    {
+      "source": "Primary text color used by default across all elements",
+      "target": "所有元素默认使用的主要文字颜色。"
+    },
+    {
+      "source": "Selected text background",
+      "target": "选中文字背景"
+    },
+    {
+      "source": "Highlighted text background",
+      "target": "高亮文字背景"
+    },
+    {
+      "source": "Muted text color",
+      "target": "弱化文字颜色"
+    },
+    {
+      "source": "Secondary text such as sidebar note titles and table headings",
+      "target": "次要文字，例如侧边栏笔记标题和表头。"
+    },
+    {
+      "source": "Faint text color",
+      "target": "淡化文字颜色"
+    },
+    {
+      "source": "tertiary text such as input placeholders, empty checkboxes, and disabled statuses",
+      "target": "第三级文字，例如输入框占位符、空复选框和禁用状态。"
+    },
+    {
+      "source": "Markdown syntax color",
+      "target": "Markdown 语法标记颜色"
+    },
+    {
+      "source": "Markdown formatting syntax text color",
+      "target": "Markdown 格式语法标记的文字颜色。"
+    },
+    {
+      "source": "Italic text color",
+      "target": "斜体文字颜色"
+    },
+    {
+      "source": "Bold text color",
+      "target": "粗体文字颜色"
+    },
+    {
+      "source": "Bold text weight",
+      "target": "粗体字重"
+    },
+    {
+      "source": "Paragraph spacing",
+      "target": "段落间距"
+    },
+    {
+      "source": "Space between paragraphs in reading mode (Obsidian 1.3.7+)",
+      "target": "阅读模式中段落之间的间距（Obsidian 1.3.7 及以上）。"
+    },
+    {
+      "source": "Heading spacing",
+      "target": "标题间距"
+    },
+    {
+      "source": "Space between paragraphs and headings in reading mode (Obsidian 1.3.7+)",
+      "target": "阅读模式中段落与标题之间的间距（Obsidian 1.3.7 及以上）。"
+    },
+    {
+      "source": "Titles",
+      "target": "标题"
+    },
+    {
+      "source": "Tab title bar",
+      "target": "标签页标题栏"
+    },
+    {
+      "source": "Tab title bar must be turned on in Appearance settings",
+      "target": "必须先在“外观”设置中启用标签页标题栏。"
+    },
+    {
+      "source": "Tab title visibility",
+      "target": "标签页标题可见性"
+    },
+    {
+      "source": "Visibility of the tab title text",
+      "target": "标签页标题文字的可见性。"
+    },
+    {
+      "source": "Hover only",
+      "target": "仅悬停时"
+    },
+    {
+      "source": "Tab title font size",
+      "target": "标签页标题字体大小"
+    },
+    {
+      "source": "Tab title font weight",
+      "target": "标签页标题字重"
+    },
+    {
+      "source": "Tab title alignment",
+      "target": "标签页标题对齐"
+    },
+    {
+      "source": "Left",
+      "target": "左侧"
+    },
+    {
+      "source": "Tab title text color (active)",
+      "target": "标签页标题文字颜色（活动）"
+    },
+    {
+      "source": "Tab title text color (inactive)",
+      "target": "标签页标题文字颜色（未激活）"
+    },
+    {
+      "source": "Inline title",
+      "target": "文内标题"
+    },
+    {
+      "source": "Inline titles must be turned on in Appearance settings",
+      "target": "必须先在“外观”设置中启用文内标题。"
+    },
+    {
+      "source": "Inline title font",
+      "target": "文内标题字体"
+    },
+    {
+      "source": "Inline title font size",
+      "target": "文内标题字体大小"
+    },
+    {
+      "source": "Inline title font weight",
+      "target": "文内标题字重"
+    },
+    {
+      "source": "Inline title text color (active)",
+      "target": "文内标题文字颜色（活动）"
+    },
+    {
+      "source": "Translucency",
+      "target": "半透明效果"
+    },
+    {
+      "source": "Translucent background color",
+      "target": "半透明背景颜色"
+    },
+    {
+      "source": "Window frame",
+      "target": "窗口框架"
+    },
+    {
+      "source": "Hide window frame title",
+      "target": "隐藏窗口框架标题"
+    },
+    {
+      "source": "Hide title in the custom title bar",
+      "target": "隐藏自定义标题栏中的标题。"
+    },
+    {
+      "source": "Frame background",
+      "target": "窗口框架背景"
+    },
+    {
+      "source": "Requires colorful window frame",
+      "target": "需要启用彩色窗口框架。"
+    },
+    {
+      "source": "Frame icon color",
+      "target": "窗口框架图标颜色"
+    },
+    {
+      "source": "Requires colorful frame",
+      "target": "需要启用彩色窗口框架。"
+    },
+    {
+      "source": "Frame title color (focused)",
+      "target": "窗口框架标题颜色（聚焦）"
+    },
+    {
+      "source": "Requires custom title bar",
+      "target": "需要启用自定义标题栏。"
+    },
+    {
+      "source": "Frame title color (inactive)",
+      "target": "窗口框架标题颜色（未激活）"
+    },
+    {
+      "source": "Frame title font weight",
+      "target": "窗口框架标题字重"
+    },
+    {
+      "source": "Minimal Cards",
+      "target": "Minimal 卡片"
+    },
+    {
+      "source": "Card minimum width",
+      "target": "卡片最小宽度"
+    },
+    {
+      "source": "Card maximum width",
+      "target": "卡片最大宽度"
+    },
+    {
+      "source": "Default fills the available width, accepts valid CSS units",
+      "target": "默认填满可用宽度；接受有效的 CSS 单位。"
+    },
+    {
+      "source": "Card minimum width on mobile",
+      "target": "移动端卡片最小宽度"
+    },
+    {
+      "source": "Card padding",
+      "target": "卡片内边距"
+    },
+    {
+      "source": "Card maximum image height",
+      "target": "卡片图像最大高度"
+    },
+    {
+      "source": "Card border width",
+      "target": "卡片边框宽度"
+    },
+    {
+      "source": "Card background color",
+      "target": "卡片背景颜色"
+    },
+    {
+      "source": "Minimal Advanced Settings",
+      "target": "Minimal 高级设置"
+    },
+    {
+      "source": "Hide Markdown syntax",
+      "target": "隐藏 Markdown 语法标记"
+    },
+    {
+      "source": "WARNING — This may be confusing because the characters still exist they are just hidden.",
+      "target": "警告——字符仍然存在，只是被隐藏，这可能造成困惑。"
+    },
+    {
+      "source": "Hide setting descriptions",
+      "target": "隐藏设置说明"
+    },
+    {
+      "source": "Press and hold setting names to see their description.",
+      "target": "长按设置名称可查看说明。"
+    },
+    {
+      "source": "Animation speed",
+      "target": "动画速度"
+    },
+    {
+      "source": "Disabled",
+      "target": "禁用"
+    },
+    {
+      "source": "Fast",
+      "target": "快速"
+    },
+    {
+      "source": "Cursor style",
+      "target": "光标样式"
+    },
+    {
+      "source": "The cursor style for UI elements",
+      "target": "界面元素使用的光标样式。"
+    },
+    {
+      "source": "Pointer",
+      "target": "手形指针"
+    },
+    {
+      "source": "Crosshair",
+      "target": "十字准星"
+    },
+    {
+      "source": "Small font size",
+      "target": "小号字体大小"
+    },
+    {
+      "source": "Font size in px of smaller text",
+      "target": "较小文字的字体大小（px）。"
+    },
+    {
+      "source": "Smaller font size",
+      "target": "更小号字体大小"
+    },
+    {
+      "source": "Font size in px of smallest text",
+      "target": "最小文字的字体大小（px）。"
+    },
+    {
+      "source": "Disable mobile toolbar",
+      "target": "禁用移动端工具栏"
+    },
+    {
+      "source": "Turns off toolbar in editor on mobile",
+      "target": "关闭移动端编辑器工具栏。"
+    }
+  ]
+}

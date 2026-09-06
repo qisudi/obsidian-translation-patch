@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "style-settings-zh",
+  "name": "Style Settings 中文补丁",
+  "enabled": true,
+  "target": {
+    "pluginId": "obsidian-style-settings"
+  },
+  "translations": [
+    { "source": "No style settings found", "target": "未找到样式设置" },
+    { "source": "Style settings configured by theme and plugin authors will show up here. You can also create your own configuration by creating a CSS snippet in your vault. ", "target": "主题和插件作者提供的样式设置会显示在这里。你也可以在仓库中创建 CSS 代码片段来自定义配置。" },
+    { "source": "Click here for details and examples.", "target": "点击此处查看详情和示例。" },
+    { "source": "Search Style Settings...", "target": "搜索样式设置…" },
+    { "source": "Import an entire or partial configuration. Warning: this may override existing settings", "target": "导入完整或部分配置。警告：这可能会覆盖现有设置。" },
+    { "source": "Error importing style settings: config is empty", "target": "导入样式设置失败：配置为空" },
+    { "source": "Reset all settings to default", "target": "将所有设置恢复为默认值" },
+    { "source": "Export settings for: ", "target": "导出设置：" },
+    { "source": "Import style setting", "target": "导入样式设置" },
+    { "source": "Error importing config", "target": "导入配置失败" },
+    { "source": "Error importing style settings: ", "target": "导入样式设置失败：" },
+    { "source": "Copy to clipboard", "target": "复制到剪贴板" },
+    { "source": "Import from file", "target": "从文件导入" },
+    { "source": "Paste config here...", "target": "在此粘贴配置…" },
+    { "source": "Default (light): ", "target": "默认值（浅色模式）：" },
+    { "source": "Default (dark): ", "target": "默认值（深色模式）：" },
+    { "source": "Reset all settings", "target": "重置所有设置" },
+    { "source": "Restore default", "target": "恢复默认值" },
+    { "source": "Export settings", "target": "导出设置" },
+    { "source": "All settings", "target": "所有设置" },
+    { "source": "Download", "target": "下载" },
+    { "source": "Import", "target": "导入" },
+    { "source": "Export", "target": "导出" },
+    { "source": "Save", "target": "保存" },
+    { "source": "^Export settings for: (.+)$", "target": "导出设置：$1", "regex": true },
+    { "source": "^Error importing style settings: (.+)$", "target": "导入样式设置失败：$1", "regex": true },
+    { "source": "^(\\d+) Results$", "target": "$1 个结果", "regex": true },
+    { "source": "^Toggle (.+)$", "target": "切换 $1", "regex": true }
+  ]
+}

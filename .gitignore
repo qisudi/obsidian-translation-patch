@@ -1,0 +1,10 @@
+# Development-only source snapshots and generated archives
+_style-settings-src/
+*.zip
+*.yaml
+backups/
+
+# Local/editor files
+.obsidian/
+node_modules/
+dist/

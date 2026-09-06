@@ -1,0 +1,449 @@
+/* Translation Patch settings
+ * The UI intentionally uses Obsidian's CSS variables so it follows the active
+ * light/dark theme, including community themes and the mobile app.
+ */
+
+.translation-patch-settings {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  padding: 4px 0 40px;
+}
+
+.translation-patch-hero {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 20px;
+  padding: 24px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 14px;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--interactive-accent) 14%, var(--background-primary)),
+    var(--background-primary));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+@supports not (background: color-mix(in srgb, white, black)) {
+  .translation-patch-hero {
+    background: var(--background-secondary);
+  }
+}
+
+.translation-patch-hero::after {
+  position: absolute;
+  top: -54px;
+  right: -38px;
+  width: 160px;
+  height: 160px;
+  border: 1px solid color-mix(in srgb, var(--interactive-accent) 25%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 18px color-mix(in srgb, var(--interactive-accent) 7%, transparent),
+    0 0 0 36px color-mix(in srgb, var(--interactive-accent) 4%, transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.translation-patch-eyebrow {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 7px;
+  color: var(--text-accent);
+  font-size: 0.68em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.translation-patch-hero h2 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: 1.65em;
+  letter-spacing: -0.02em;
+}
+
+.translation-patch-hero > p {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  margin: 8px 0 0;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.translation-patch-hero-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.translation-patch-theme-pill {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--background-primary) 70%, transparent);
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+}
+
+.translation-patch-theme-pill span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.translation-patch-theme-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 50%;
+  background: var(--interactive-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--interactive-accent) 17%, transparent);
+}
+
+.translation-patch-hero-button {
+  min-height: 36px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.translation-patch-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 26px;
+}
+
+.translation-patch-stat {
+  min-width: 0;
+  padding: 15px 16px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 10px;
+  background: var(--background-secondary);
+}
+
+.translation-patch-stat-value {
+  overflow: hidden;
+  color: var(--text-normal);
+  font-size: 1.35em;
+  font-weight: 700;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.translation-patch-stat-label {
+  margin-top: 5px;
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+}
+
+.translation-patch-section {
+  margin: 0 0 24px;
+}
+
+.translation-patch-section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 2px 10px;
+}
+
+.translation-patch-section-heading-text {
+  min-width: 0;
+}
+
+.translation-patch-section-heading h3 {
+  margin: 0;
+  color: var(--text-normal);
+  font-size: 1.05em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.translation-patch-section-heading p {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+  line-height: 1.45;
+}
+
+.translation-patch-card {
+  overflow: hidden;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 11px;
+  background: var(--background-primary);
+}
+
+.translation-patch-card .setting-item {
+  margin: 0;
+  padding: 15px 17px;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.translation-patch-card .setting-item:first-child {
+  border-top: 0;
+}
+
+.translation-patch-card .setting-item-name {
+  font-weight: 600;
+}
+
+.translation-patch-card .setting-item-description {
+  max-width: 640px;
+  line-height: 1.48;
+}
+
+.translation-patch-setting-primary {
+  background: color-mix(in srgb, var(--interactive-accent) 3%, transparent);
+}
+
+.translation-patch-setting-action .setting-item-control {
+  min-width: 92px;
+}
+
+.translation-patch-section-toggle {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 32px;
+  margin-top: -3px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.translation-patch-section-toggle:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.translation-patch-section-chevron {
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 160ms ease;
+}
+
+.translation-patch-section.is-collapsed .translation-patch-section-chevron {
+  transform: rotate(-45deg) translate(-1px, 1px);
+}
+
+.translation-patch-section.is-collapsed .translation-patch-card {
+  display: none;
+}
+
+.translation-patch-list {
+  display: grid;
+  gap: 10px;
+}
+
+.translation-patch-list-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 10px;
+  background: var(--background-primary);
+}
+
+.translation-patch-list-info {
+  min-width: 0;
+}
+
+.translation-patch-list-info strong {
+  display: block;
+  overflow: hidden;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.translation-patch-list-info small {
+  display: block;
+  overflow: hidden;
+  margin-top: 5px;
+  color: var(--text-faint);
+  font-size: 0.78em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.translation-patch-list-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 7px;
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+  text-align: right;
+}
+
+.translation-patch-status {
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.9em;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.translation-patch-status-active {
+  background: var(--background-secondary);
+  background: color-mix(in srgb, var(--color-green, var(--interactive-accent)) 17%, transparent);
+  color: var(--color-green, var(--text-accent));
+}
+
+.translation-patch-status-inactive {
+  background: var(--background-secondary);
+  color: var(--text-muted);
+}
+
+.translation-patch-list-detail {
+  white-space: nowrap;
+}
+
+.translation-patch-list-footer {
+  margin: 11px 2px 0;
+  line-height: 1.5;
+}
+
+.translation-patch-empty {
+  padding: 22px 16px;
+  border: 1px dashed var(--background-modifier-border);
+  border-radius: 10px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .translation-patch-settings {
+    padding-bottom: 28px;
+  }
+
+  .translation-patch-hero {
+    padding: 19px 16px;
+    border-radius: 12px;
+  }
+
+  .translation-patch-hero-footer {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .translation-patch-theme-pill {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .translation-patch-hero-button {
+    width: 100%;
+    min-height: 42px;
+  }
+
+  .translation-patch-stats {
+    gap: 7px;
+    margin-bottom: 22px;
+  }
+
+  .translation-patch-stat {
+    padding: 12px 10px;
+    text-align: center;
+  }
+
+  .translation-patch-stat-value {
+    font-size: 1.2em;
+  }
+
+  .translation-patch-stat-label {
+    font-size: 0.75em;
+  }
+
+  .translation-patch-section {
+    margin-bottom: 20px;
+  }
+
+  .translation-patch-section-heading {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .translation-patch-card .setting-item {
+    display: block;
+    padding: 14px;
+  }
+
+  .translation-patch-card .setting-item-control {
+    justify-content: flex-start;
+    margin-top: 11px;
+  }
+
+  .translation-patch-setting-action .setting-item-control,
+  .translation-patch-setting-action .setting-item-control button {
+    width: 100%;
+  }
+
+  .translation-patch-setting-action .setting-item-control button {
+    min-height: 40px;
+  }
+
+  .translation-patch-list-item {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: 10px;
+    padding: 13px 14px;
+  }
+
+  .translation-patch-list-meta {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .translation-patch-list-info small {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 380px) {
+  .translation-patch-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .translation-patch-stat {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    text-align: left;
+  }
+
+  .translation-patch-stat-label {
+    margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .translation-patch-section-chevron {
+    transition: none;
+  }
+}
