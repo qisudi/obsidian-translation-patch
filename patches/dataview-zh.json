@@ -2,6 +2,7 @@
   "schemaVersion": 1,
   "id": "dataview-zh",
   "name": "Dataview 中文补丁",
+  "language": "zh-CN",
   "enabled": true,
   "target": {
     "pluginId": "dataview"

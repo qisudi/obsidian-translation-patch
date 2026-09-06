@@ -210,6 +210,7 @@ const patch = {
   schemaVersion: 1,
   id: "blue-topaz-style-settings-zh",
   name: "Blue Topaz 主题 Style Settings 中文补丁",
+  language: "zh-CN",
   enabled: true,
   target: {
     pluginId: "obsidian-style-settings",

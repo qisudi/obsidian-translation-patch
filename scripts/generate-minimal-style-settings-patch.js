@@ -416,6 +416,7 @@ const patch = {
   schemaVersion: 1,
   id: "minimal-style-settings-zh",
   name: "Minimal 主题 Style Settings 中文补丁",
+  language: "zh-CN",
   enabled: true,
   target: {
     pluginId: "obsidian-style-settings",

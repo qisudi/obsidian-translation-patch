@@ -80,6 +80,14 @@
   margin-top: 20px;
 }
 
+.translation-patch-context-pills {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .translation-patch-theme-pill {
   display: inline-flex;
   min-width: 0;
@@ -106,6 +114,19 @@
   border-radius: 50%;
   background: var(--interactive-accent);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--interactive-accent) 17%, transparent);
+}
+
+.translation-patch-language-mark {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--interactive-accent) 16%, transparent);
+  color: var(--text-accent);
+  font-size: 0.75em;
+  font-weight: 700;
 }
 
 .translation-patch-hero-button {
@@ -347,6 +368,10 @@
     align-items: stretch;
     flex-direction: column;
     gap: 10px;
+  }
+
+  .translation-patch-context-pills {
+    width: 100%;
   }
 
   .translation-patch-theme-pill {

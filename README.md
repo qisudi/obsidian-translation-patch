@@ -18,6 +18,7 @@
   "schemaVersion": 1,
   "id": "some-plugin-zh",
   "name": "Some Plugin 汉化",
+  "language": "zh-CN",
   "enabled": true,
   "target": {
     "pluginId": "some-plugin",
@@ -34,13 +35,15 @@
 
 `target.selector` 和每条规则的 `selector` 都是可选的 CSS 选择器，用于避免误翻译其他插件。`target.pluginId` 会按命令 ID（通常为 `pluginId:command`）限制命令名称的翻译；界面元素若无法通过 DOM 归属判断，请使用 selector。
 
+`language`（也可写作 `locale`）用于指定补丁语言，支持 `zh-CN`、`zh-TW`、`en`、`ja`、`ko`、`de`、`fr`、`es`、`pt-BR` 等 BCP-47 风格代码。旧版未写语言字段的补丁默认按简体中文处理；文件名带有清晰后缀（例如 `plugin-ja.json`）时也会自动识别。
+
 `target.theme` 可指定主题名称（也可用 `themes` 数组指定多个主题）。主题补丁只会在对应主题启用时加载；切换主题后会自动恢复旧主题文字并加载新主题规则。这个能力主要用于 Style Settings：插件自身固定文字放在插件补丁中，各主题写入 `@settings` 的标题、说明和选项则放在独立主题补丁中。
 
 对于 Style Settings 主题补丁，请同时设置 `target.pluginId` 为 `obsidian-style-settings`、`target.theme` 为主题名称和 `target.source` 为 `false`。插件会在 Style Settings 完成 CSS/YAML 解析、渲染设置面板之前翻译内部配置对象，因此主题提供的标题、说明和下拉选项都能生效；不需要改写主题 CSS。
 
 设置页底部的“补丁列表”会显示所有已启用的补丁、目标插件/主题、规则数量和当前生效状态；主题不匹配的补丁会保留在列表中但标记为“未启用”，方便确认切换主题后的加载结果。
 
-设置页使用 Obsidian 原生颜色变量，并针对窄屏重新排列卡片、按钮和补丁状态信息；桌面端与移动端会随系统明暗主题自动适配。内容区域会随设置面板宽度伸展，不会固定在窄列中。
+设置页使用 Obsidian 原生颜色变量，并针对窄屏重新排列卡片、按钮和补丁状态信息；桌面端与移动端会随系统明暗主题自动适配。内容区域会随设置面板宽度伸展，不会固定在窄列中。设置页的“补丁语言”下拉框可以切换当前启用的语言；选择“跟随 Obsidian”时会读取 Obsidian 当前界面语言。
 
 插件会按需进行全量界面扫描：启动、重新加载补丁、切换主题时在空闲时扫描一次，平时只处理新增或变化的节点；精确文本使用索引快速查找，动态观察器按动画帧批量处理。这样可以明显减少低性能设备上的重复计算和启动卡顿。
 
@@ -50,12 +53,12 @@
 
 关闭“启用汉化”时，插件会尽量把仍未被第三方插件改写的文字和命令恢复为原文；重新打开相关视图也会自然恢复。
 
+## 给其他 Agent 使用
+
+仓库中的 `skills/obsidian-translation-patch/` 是可安装的技能目录，包含提取、翻译、校验和安装补丁的完整流程。支持技能目录的 Agent 可以直接安装该目录；不支持安装技能的 Agent 可以复制其中的 `obsidian-translation-patch-agent.txt`，作为一段完整指令发送给 Agent。生成补丁时请填写目标语言的 `language` 字段，例如 `zh-TW`、`ja` 或 `en`。
+
 ## 注意事项
 
 - 运行时规则发生在界面渲染后；启用“注入插件源码”时，精确规则也会写入目标插件的 `main.js`，修改前自动备份。主题补丁应设置 `"source": false`，不会修改主题 CSS。
 - 如果某个插件把文字绘制在 Canvas、图片或 Shadow DOM 内，普通 DOM 补丁无法覆盖，需要针对该插件编写专用适配规则。
 - 补丁文件格式错误时会被跳过，并在“重新加载”时提示跳过数量。
-
-## 给其他 Agent 使用
-
-仓库中的 `skills/obsidian-translation-patch/` 是可安装的技能目录，包含提取、翻译、校验和安装补丁的完整流程。支持技能目录的 Agent 可以直接安装该目录；不支持安装技能的 Agent 可以复制其中的 `obsidian-translation-patch-agent.txt`，作为一段完整指令发送给 Agent。

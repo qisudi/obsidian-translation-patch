@@ -7,6 +7,7 @@ The current translation-patch plugin reads JSON files directly from its `patches
   "schemaVersion": 1,
   "id": "example-plugin-zh-cn",
   "name": "Example Plugin 简体中文",
+  "language": "zh-CN",
   "enabled": true,
   "target": {
     "pluginId": "example-plugin",
@@ -25,6 +26,7 @@ The current translation-patch plugin reads JSON files directly from its `patches
 ## Field rules
 
 - `schemaVersion`, `id`, `name`, and `translations` are required. `enabled` defaults to true.
+- `language` (or `locale`) selects the patch language. Use BCP-47-style codes such as `zh-CN`, `zh-TW`, `en`, `ja`, or `pt-BR`. Legacy patches without this field are treated as `zh-CN`; a clear filename suffix such as `plugin-ja.json` is also recognized.
 - `target.pluginId` scopes command names and documents which plugin owns the UI. Use the exact ID from `manifest.json`.
 - `target.theme` (or `themes`) limits a patch to the active theme. Theme matching is case-insensitive.
 - `target.source: false` disables source injection for that patch. Use it for theme and Style Settings rules, selector-scoped rules, and any text that is unsafe to replace in bundled JavaScript.
@@ -53,4 +55,3 @@ Before delivery:
 5. Compare placeholders and markup in source/target. The multiset of `${...}`, `{{...}}`, `%s`/`%d`, numbered `$1` references, HTML tags, Markdown link destinations, and code spans must remain compatible.
 6. Reject source-injection rules that have a selector, are regex rules, target generic tokens (`none`, `true`, `false`, common CSS values), or could alter identifiers/URLs.
 7. Keep a coverage table: translated, intentionally excluded with a reason, dynamic/unreachable, and needs human review.
-

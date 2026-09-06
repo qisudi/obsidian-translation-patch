@@ -5,11 +5,27 @@ const DEFAULT_SETTINGS = {
   applySourcePatches: true,
   translateAttributes: true,
   observeDom: true,
+  language: "zh-CN",
   commandIntervalMs: 5000,
   inlinePatches: [],
 };
 
 const PATCH_SCHEMA_VERSION = 1;
+const LANGUAGE_LABELS = {
+  auto: "跟随 Obsidian",
+  "zh-CN": "简体中文",
+  "zh-TW": "繁體中文",
+  en: "English",
+  ja: "日本語",
+  ko: "한국어",
+  de: "Deutsch",
+  fr: "Français",
+  es: "Español",
+  pt: "Português",
+  "pt-BR": "Português (Brasil)",
+  ru: "Русский",
+  it: "Italiano",
+};
 const TRANSLATABLE_ATTRIBUTES = [
   "aria-label",
   "aria-description",
@@ -21,6 +37,42 @@ const TRANSLATABLE_ATTRIBUTES = [
 
 function normaliseText(value) {
   return String(value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function normaliseLocale(value) {
+  const raw = normaliseText(value).replace(/_/g, "-");
+  if (!raw) return "";
+  const lower = raw.toLocaleLowerCase();
+  if (lower === "auto" || lower === "default" || lower === "all" || lower === "*") return lower === "default" ? "" : lower;
+  const aliases = {
+    zh: "zh-CN",
+    "zh-cn": "zh-CN",
+    "zh-hans": "zh-CN",
+    "zh-sg": "zh-CN",
+    "zh-my": "zh-CN",
+    "zh-tw": "zh-TW",
+    "zh-hant": "zh-TW",
+    "zh-hk": "zh-TW",
+    "zh-mo": "zh-TW",
+    "pt-br": "pt-BR",
+  };
+  if (aliases[lower]) return aliases[lower];
+  if (lower.startsWith("zh-hans-")) return "zh-CN";
+  if (lower.startsWith("zh-hant-")) return "zh-TW";
+  const parts = raw.split("-").filter(Boolean);
+  if (parts.length === 1) return parts[0].toLocaleLowerCase();
+  return `${parts[0].toLocaleLowerCase()}-${parts.slice(1).map((part) => part.length === 2 || part.length === 3 ? part.toUpperCase() : part).join("-")}`;
+}
+
+function localeBase(value) {
+  return normaliseLocale(value).split("-")[0];
+}
+
+function inferLocaleFromSource(source) {
+  const name = String(source || "").split(/[\\/]/).pop().toLocaleLowerCase();
+  const match = name.match(/(?:^|[-_.])(zh[-_]?cn|zh[-_]?tw|zh[-_]?hans|zh[-_]?hant|zh|en|ja|ko|de|fr|es|pt[-_]?br|pt|ru|it)(?:[-_.]|$)/i);
+  if (!match) return "";
+  return normaliseLocale(match[1]);
 }
 
 function isElement(node) {
@@ -78,6 +130,7 @@ class TranslationPatchPlugin extends Plugin {
   async onload() {
     this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
     this.settings.inlinePatches = asArray(this.settings.inlinePatches);
+    this.settings.language = normaliseLocale(this.settings.language) || DEFAULT_SETTINGS.language;
     this.patches = [];
     this.compiledEntries = [];
     this.observer = null;
@@ -105,8 +158,10 @@ class TranslationPatchPlugin extends Plugin {
     this.needsFullTranslation = true;
     this.fullTranslationHandle = null;
     this.fullTranslationUsesIdle = false;
+    this.sourceContextChanged = false;
     await this.updateActiveThemeFromConfig(false);
     this.activeThemeKey = this.getActiveThemeKey();
+    this.activeLanguageKey = this.getActiveLanguageKey();
 
     this.addSettingTab(new TranslationPatchSettingTab(this.app, this));
     this.addCommand({
@@ -270,11 +325,16 @@ class TranslationPatchPlugin extends Plugin {
     const skipped = [];
     const errors = [];
     const reloaded = new Set();
-
+    const groups = new Map();
     for (const patch of this.patches) {
       if (!this.patchMatchesEnvironment(patch)) continue;
       const pluginId = patch.target && patch.target.pluginId ? String(patch.target.pluginId) : "";
       if (!pluginId || patch.target.source === false) continue;
+      if (!groups.has(pluginId)) groups.set(pluginId, []);
+      groups.get(pluginId).push(patch);
+    }
+
+    for (const [pluginId, pluginPatches] of groups) {
       const mainPath = await this.findPluginMainPath(pluginId);
       if (!mainPath) {
         skipped.push(`${pluginId}（未找到 main.js）`);
@@ -290,7 +350,9 @@ class TranslationPatchPlugin extends Plugin {
           await this.app.vault.adapter.mkdir(this.sourceBackupRoot).catch(() => {});
           await this.app.vault.adapter.mkdir(`${this.sourceBackupRoot}/${pluginId}`).catch(() => {});
           await this.app.vault.adapter.mkdir(`${this.sourceBackupRoot}/${pluginId}/${this.getPluginVersion(pluginId)}`).catch(() => {});
-          const looksAlreadyPatched = patch.translations.some((entry) => !entry.regex && entry.target && current.includes(entry.target));
+          const looksAlreadyPatched = pluginPatches.some((patch) =>
+            patch.translations.some((entry) => !entry.regex && entry.target && current.includes(entry.target))
+          );
           if (looksAlreadyPatched && await this.app.vault.adapter.exists(legacyBackupPath)) {
             await this.app.vault.adapter.write(backupPath, await this.app.vault.adapter.read(legacyBackupPath));
           } else {
@@ -302,7 +364,7 @@ class TranslationPatchPlugin extends Plugin {
         // clicking “reload” work even when the current main.js already contains an older translation.
         const original = await this.app.vault.adapter.read(backupPath);
         let translated = original;
-        const sourceEntries = patch.translations
+        const sourceEntries = pluginPatches.flatMap((patch) => patch.translations)
           // Selector-scoped rules are deliberately runtime-only. Their source text may be
           // a generic token such as a CSS value (for example "none") that is unsafe to
           // replace throughout a bundled JavaScript file.
@@ -337,9 +399,10 @@ class TranslationPatchPlugin extends Plugin {
   async restoreSourcePatches(showNotice) {
     const restored = [];
     const errors = [];
-    for (const patch of this.patches) {
-      const pluginId = patch.target && patch.target.pluginId ? String(patch.target.pluginId) : "";
-      if (!pluginId) continue;
+    const pluginIds = [...new Set(this.patches
+      .map((patch) => patch.target && patch.target.pluginId ? String(patch.target.pluginId) : "")
+      .filter(Boolean))];
+    for (const pluginId of pluginIds) {
       try {
         let backupPath = this.getSourceBackupPath(pluginId);
         if (!(await this.app.vault.adapter.exists(backupPath))) {
@@ -365,12 +428,17 @@ class TranslationPatchPlugin extends Plugin {
   validatePatch(patch, source) {
     if (!patch || typeof patch !== "object") return null;
     if (!patch.id || !Array.isArray(patch.translations)) return null;
+    const target = patch.target && typeof patch.target === "object" ? patch.target : {};
+    const language = normaliseLocale(
+      patch.language ?? patch.locale ?? target.language ?? target.locale ?? inferLocaleFromSource(source),
+    ) || DEFAULT_SETTINGS.language;
     return {
       schemaVersion: patch.schemaVersion || PATCH_SCHEMA_VERSION,
       id: String(patch.id),
       name: String(patch.name || patch.id),
       enabled: patch.enabled !== false,
-      target: patch.target && typeof patch.target === "object" ? patch.target : {},
+      language,
+      target,
       translations: patch.translations
         .filter((entry) => entry && typeof entry === "object" && entry.source != null && entry.target != null)
         .map((entry) => ({
@@ -428,6 +496,72 @@ class TranslationPatchPlugin extends Plugin {
     }
   }
 
+  getConfiguredLanguage() {
+    const values = [];
+    try {
+      if (this.app.vault && typeof this.app.vault.getConfig === "function") {
+        values.push(this.app.vault.getConfig("language"));
+        values.push(this.app.vault.getConfig("locale"));
+      }
+    } catch (_error) {
+      // Continue with browser locale fallback.
+    }
+    try {
+      if (typeof navigator !== "undefined" && navigator.language) values.push(navigator.language);
+    } catch (_error) {
+      // Some mobile webviews do not expose navigator.language.
+    }
+    return values.map((value) => normaliseLocale(value)).find(Boolean) || "en";
+  }
+
+  getActiveLanguageKey() {
+    const selected = normaliseLocale(this.settings && this.settings.language);
+    return selected && selected !== "auto" ? selected : this.getConfiguredLanguage();
+  }
+
+  getLanguageLabel(locale) {
+    const key = normaliseLocale(locale);
+    return LANGUAGE_LABELS[key] || key || "未知语言";
+  }
+
+  getPatchLanguage(patch) {
+    if (!patch) return DEFAULT_SETTINGS.language;
+    return normaliseLocale(patch.language) || DEFAULT_SETTINGS.language;
+  }
+
+  getLanguageOptions() {
+    const options = new Map(Object.entries(LANGUAGE_LABELS));
+    const selected = normaliseLocale(this.settings && this.settings.language);
+    if (selected && !options.has(selected)) options.set(selected, selected);
+    for (const patch of this.patches || []) {
+      const locale = this.getPatchLanguage(patch);
+      if (locale && locale !== "all" && locale !== "*") {
+        if (!options.has(locale)) options.set(locale, locale);
+      }
+    }
+    const ordered = [];
+    if (options.has("auto")) ordered.push(["auto", options.get("auto")]);
+    for (const [locale, label] of options) {
+      if (locale !== "auto") ordered.push([locale, label]);
+    }
+    return ordered;
+  }
+
+  async setLanguage(value) {
+    const next = normaliseLocale(value) || DEFAULT_SETTINGS.language;
+    if (next === this.settings.language) return;
+    this.settings.language = next;
+    await this.saveSettings();
+    this.refreshPatchContext();
+    if (this.settings.enabled && this.settings.applySourcePatches) {
+      await this.restoreSourcePatches(false);
+      await this.applySourcePatches();
+    }
+    this.sourceContextChanged = false;
+    this.needsFullTranslation = true;
+    this.refresh(true);
+  }
+
   async updateActiveThemeFromConfig(refresh) {
     try {
       const configDir = this.app.vault && this.app.vault.configDir
@@ -448,7 +582,21 @@ class TranslationPatchPlugin extends Plugin {
     return this.getActiveThemeName().toLocaleLowerCase();
   }
 
+  patchMatchesLanguage(patch) {
+    const requested = this.getPatchLanguage(patch);
+    if (!requested || requested === "all" || requested === "*" || requested === "auto") return true;
+    const active = this.getActiveLanguageKey();
+    if (!active) return true;
+    if (requested === active) return true;
+    const requestedBase = localeBase(requested);
+    const activeBase = localeBase(active);
+    // A generic patch such as `en` can serve en-US/en-GB, but a regional patch
+    // must not unexpectedly replace another regional variant.
+    return requestedBase === activeBase && !requested.includes("-");
+  }
+
   patchMatchesEnvironment(patch) {
+    if (!this.patchMatchesLanguage(patch)) return false;
     const target = patch && patch.target ? patch.target : {};
     const requested = target.theme ?? target.cssTheme ?? target.themes;
     if (requested == null || requested === "") return true;
@@ -460,10 +608,13 @@ class TranslationPatchPlugin extends Plugin {
 
   refreshPatchContext() {
     const nextThemeKey = this.getActiveThemeKey();
-    if (nextThemeKey === this.activeThemeKey) return;
+    const nextLanguageKey = this.getActiveLanguageKey();
+    if (nextThemeKey === this.activeThemeKey && nextLanguageKey === this.activeLanguageKey) return;
     this.restoreDom();
     this.restoreStyleSettingsConfig();
+    this.sourceContextChanged = true;
     this.activeThemeKey = nextThemeKey;
+    this.activeLanguageKey = nextLanguageKey;
     this.compilePatches();
     this.styleSettingsSyncState = null;
     this.needsFullTranslation = true;
@@ -575,6 +726,17 @@ class TranslationPatchPlugin extends Plugin {
 
   async maybeReapplySourcePatches() {
     if (!this.settings.enabled || !this.settings.applySourcePatches || this.sourcePatchCheckRunning) return;
+    if (this.sourceContextChanged) {
+      this.sourcePatchCheckRunning = true;
+      try {
+        this.sourceContextChanged = false;
+        await this.restoreSourcePatches(false);
+        await this.applySourcePatches();
+      } finally {
+        this.sourcePatchCheckRunning = false;
+      }
+      return;
+    }
     const now = Date.now();
     if (now - this.lastSourcePatchCheck < 5000) return;
     this.lastSourcePatchCheck = now;
@@ -864,6 +1026,7 @@ class TranslationPatchSettingTab extends PluginSettingTab {
     containerEl.addClass("translation-patch-settings");
 
     const activeTheme = this.plugin.getActiveThemeName() || "默认主题";
+    const activeLanguage = this.plugin.getActiveLanguageKey();
     const hero = containerEl.createDiv({ cls: "translation-patch-hero" });
     hero.createDiv({ cls: "translation-patch-eyebrow", text: "TRANSLATION PATCH" });
     hero.createEl("h2", { text: "汉化补丁" });
@@ -871,9 +1034,13 @@ class TranslationPatchSettingTab extends PluginSettingTab {
       text: "用独立 JSON 补丁翻译插件和主题界面。切换外观后会自动匹配对应补丁，无需重启 Obsidian。",
     });
     const heroFooter = hero.createDiv({ cls: "translation-patch-hero-footer" });
-    const themePill = heroFooter.createDiv({ cls: "translation-patch-theme-pill" });
+    const contextPills = heroFooter.createDiv({ cls: "translation-patch-context-pills" });
+    const themePill = contextPills.createDiv({ cls: "translation-patch-theme-pill" });
     themePill.createSpan({ cls: "translation-patch-theme-dot" });
-    themePill.createSpan({ text: `当前外观 · ${activeTheme}` });
+    themePill.createSpan({ text: `外观 · ${activeTheme}` });
+    const languagePill = contextPills.createDiv({ cls: "translation-patch-theme-pill" });
+    languagePill.createSpan({ cls: "translation-patch-language-mark", text: "文" });
+    languagePill.createSpan({ text: `语言 · ${this.plugin.getLanguageLabel(activeLanguage)}` });
     const reloadButton = heroFooter.createEl("button", {
       text: "重新加载补丁",
       cls: "mod-cta translation-patch-hero-button",
@@ -895,6 +1062,9 @@ class TranslationPatchSettingTab extends PluginSettingTab {
     this.renderStat(stats, this.plugin.patches.length, "已加载补丁");
     this.renderStat(stats, this.plugin.compiledEntries.length, "翻译规则");
     this.renderStat(stats, this.plugin.sourcePatchReport.applied.length, "源码注入");
+
+    const languageSection = this.createSection(containerEl, "补丁语言", "选择要启用的补丁语言。旧版没有 language 字段的补丁默认按简体中文处理。");
+    this.addLanguageSetting(languageSection);
 
     const coreSection = this.createSection(containerEl, "核心设置", "控制汉化补丁是否生效，以及是否将精确翻译写入插件源码。");
     this.addToggleSetting(coreSection, "启用汉化", "关闭后不会修改界面文字或命令名称。", "enabled", true);
@@ -950,11 +1120,33 @@ class TranslationPatchSettingTab extends PluginSettingTab {
       .addToggle((toggle) => toggle.setValue(Boolean(this.plugin.settings[key])).onChange(async (value) => {
         this.plugin.settings[key] = value;
         await this.plugin.saveSettings();
+        this.plugin.needsFullTranslation = true;
         if (afterChange) await afterChange(value);
         this.plugin.refresh();
         if (key === "enabled" || key === "applySourcePatches") this.display();
       }));
     setting.settingEl.addClass(primary ? "translation-patch-setting-primary" : "translation-patch-setting-secondary");
+    return setting;
+  }
+
+  addLanguageSetting(containerEl) {
+    const setting = new Setting(containerEl)
+      .setName("当前语言")
+      .setDesc("只会启用匹配此语言的补丁；选择“跟随 Obsidian”时使用 Obsidian 当前界面语言。")
+      .addDropdown((dropdown) => {
+        for (const [locale, label] of this.plugin.getLanguageOptions()) dropdown.addOption(locale, label);
+        dropdown.setValue(this.plugin.settings.language).onChange(async (value) => {
+          dropdown.setDisabled(true);
+          try {
+            await this.plugin.setLanguage(value);
+            new Notice(`补丁语言已切换为${this.plugin.getLanguageLabel(this.plugin.getActiveLanguageKey())}`);
+            this.display();
+          } finally {
+            dropdown.setDisabled(false);
+          }
+        });
+      });
+    setting.settingEl.addClass("translation-patch-setting-language");
     return setting;
   }
 
@@ -987,6 +1179,7 @@ class TranslationPatchSettingTab extends PluginSettingTab {
     heading.setAttr("aria-label", "当前已启用的汉化补丁");
     const list = section.createDiv({ cls: "translation-patch-list" });
     const activeTheme = this.plugin.getActiveThemeName() || "默认主题";
+    const activeLanguage = this.plugin.getActiveLanguageKey();
     const allFiles = this.plugin.lastLoadReport.files || [];
 
     if (!this.plugin.patches.length) {
@@ -998,6 +1191,7 @@ class TranslationPatchSettingTab extends PluginSettingTab {
       const target = patch.target || {};
       const pluginId = target.pluginId ? String(target.pluginId) : "全局界面";
       const theme = target.theme || target.cssTheme || "";
+      const language = this.plugin.getPatchLanguage(patch);
       const matches = this.plugin.patchMatchesEnvironment(patch);
       const row = list.createDiv({ cls: "translation-patch-list-item" });
       const info = row.createDiv({ cls: "translation-patch-list-info" });
@@ -1009,6 +1203,7 @@ class TranslationPatchSettingTab extends PluginSettingTab {
         cls: `translation-patch-status ${matches ? "translation-patch-status-active" : "translation-patch-status-inactive"}`,
       });
       metadata.createSpan({ text: `目标：${pluginId}`, cls: "translation-patch-list-detail" });
+      metadata.createSpan({ text: `语言：${this.plugin.getLanguageLabel(language)}`, cls: "translation-patch-list-detail" });
       metadata.createSpan({ text: `${patch.translations.length} 条规则`, cls: "translation-patch-list-detail" });
       if (patch.source) {
         info.createEl("small", { text: `文件：${patch.source}` });
@@ -1016,7 +1211,7 @@ class TranslationPatchSettingTab extends PluginSettingTab {
     }
 
     const footer = section.createEl("p", { cls: "setting-item-description translation-patch-list-footer" });
-    footer.setText(`当前主题为“${activeTheme}”。补丁文件共 ${allFiles.length} 个；切换主题后会自动更新生效状态。`);
+    footer.setText(`当前语言为“${this.plugin.getLanguageLabel(activeLanguage)}”，外观为“${activeTheme}”。补丁文件共 ${allFiles.length} 个；切换语言或主题后会自动更新生效状态。`);
   }
 
   async exportTemplate() {
@@ -1025,6 +1220,7 @@ class TranslationPatchSettingTab extends PluginSettingTab {
       id: "example-plugin-zh",
       name: "示例插件汉化（请修改）",
       enabled: true,
+      language: "zh-CN",
       target: { pluginId: "example-plugin", selector: "", theme: "" },
       translations: [
         { source: "English text", target: "中文文本", regex: false, attributes: true },

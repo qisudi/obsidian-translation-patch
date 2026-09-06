@@ -1,7 +1,7 @@
 {
   "id": "translation-patch",
   "name": "汉化补丁",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "minAppVersion": "0.15.0",
   "description": "通过可热加载的 JSON 补丁翻译第三方插件界面，支持桌面端和移动端。",
   "author": "Local",

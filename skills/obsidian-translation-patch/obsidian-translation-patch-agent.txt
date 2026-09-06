@@ -55,6 +55,7 @@ Use the translation-patch JSON schema below. Use the exact plugin ID in target.p
   "schemaVersion": 1,
   "id": "example-plugin-zh-cn",
   "name": "Example Plugin 简体中文",
+  "language": "zh-CN",
   "enabled": true,
   "target": {
     "pluginId": "example-plugin",
@@ -70,6 +71,7 @@ Use the translation-patch JSON schema below. Use the exact plugin ID in target.p
 }
 
 Rules:
+- language (or locale) must use a BCP-47-style code such as zh-CN, zh-TW, en, ja, or pt-BR. Legacy patches without language are treated as zh-CN; clear filename suffixes such as plugin-ja.json are also recognized.
 - target.pluginId must match manifest.json. target.theme (or themes) limits a rule to the active theme.
 - Set target.source to false for theme/Style Settings patches, selector-scoped rules, and any unsafe source replacement. Do not rewrite theme CSS.
 - Use exact rules by default. Use selectors only when a generic source would otherwise affect unrelated UI.
