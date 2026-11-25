@@ -74,6 +74,8 @@ Rules:
 - language (or locale) must use a BCP-47-style code such as zh-CN, zh-TW, en, ja, or pt-BR. Legacy patches without language are treated as zh-CN; clear filename suffixes such as plugin-ja.json are also recognized.
 - target.pluginId must match manifest.json. target.theme (or themes) limits a rule to the active theme.
 - Set target.source to false for theme/Style Settings patches, selector-scoped rules, and any unsafe source replacement. Do not rewrite theme CSS.
+- Write natural text in source and target. Translation-patch 0.4.0+ injects only inside string/template literals, matches escaped forms (\u4E34\u8FD1, Here\'s, \n) automatically, and escapes the target for its delimiter. Do not pre-escape new patches, and do not ship the old "bundle byte variant + natural text" pair unless the user is still on 0.3.x.
+- Use "injectSource": false on a single rule to keep it runtime-only. Never write "source": false; that field holds the search text.
 - Use exact rules by default. Use selectors only when a generic source would otherwise affect unrelated UI.
 - Use regex only for verified variable portions, with anchors and preserved captures. Regex and selector-scoped rules are runtime-only.
 - Do not include unrelated plugins' strings or built-in translations unless the user asks for them.
@@ -84,6 +86,8 @@ Rules:
 - Compile every regex with its declared flags. Detect duplicate (pluginId, theme, selector, source) rules and conflicting targets.
 - Compare source and target placeholders/markup. The multiset of ${...}, {{...}}, %s/%d, {0}, $1 references, HTML tags, Markdown link destinations, and code spans must remain compatible.
 - Reject or mark for review any source-injection rule that is a regex, has a selector, targets generic tokens such as none/true/false/common CSS values, or could replace identifiers/URLs.
+- When the target main.js is available, run: node scripts/validate-source-patch.js <main.js> <patch.json>. Explain every zero-hit rule (renamed upstream, code-only occurrence, rejected target) before delivering; the script fails on zero hits and on any bundle that no longer parses.
+- For users on translation-patch 0.3.x, additionally reject injected targets containing a real newline or the delimiter quote of their context.
 - Maintain a coverage table: translated exact rules, translated variable rules, attribute/selector rules, theme rules, intentionally excluded strings with reasons, dynamic/unreachable strings, Canvas/image/Shadow DOM limitations, and ambiguous items needing review.
 - Do not claim “complete” merely because a search returned many results. Inspect source and built assets, then state what was not verifiable.
 

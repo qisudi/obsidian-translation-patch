@@ -472,3 +472,55 @@
     transition: none;
   }
 }
+
+/* Rule hit diagnostics (source-injection report) */
+.translation-patch-rule-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-bottom: 12px;
+}
+
+.translation-patch-rule-summary-item {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+}
+
+.translation-patch-rule-list {
+  display: grid;
+  gap: 10px;
+}
+
+.translation-patch-rule-item {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 10px;
+  background: var(--background-secondary);
+}
+
+.translation-patch-rule-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.translation-patch-rule-source {
+  display: block;
+  padding: 4px 6px;
+  border-radius: 6px;
+  background: var(--background-primary);
+  color: var(--text-normal);
+  font-size: var(--font-ui-smaller);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.translation-patch-rule-hint {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  line-height: 1.45;
+}

@@ -1,0 +1,13 @@
+{
+  "name": "obsidian-translation-patch",
+  "version": "0.4.0",
+  "private": true,
+  "description": "JSON-driven translation patch runner for Obsidian plugins and themes",
+  "scripts": {
+    "test": "node scripts/test-source-inject.js",
+    "validate": "node scripts/validate-source-patch.js",
+    "generate:minimal": "node scripts/generate-minimal-style-settings-patch.js",
+    "generate:blue-topaz": "node scripts/generate-blue-topaz-style-settings-patch.js"
+  },
+  "license": "MIT"
+}

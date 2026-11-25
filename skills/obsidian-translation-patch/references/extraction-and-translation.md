@@ -24,6 +24,16 @@ options           label            default
 
 Also inspect framework equivalents such as React/Svelte/Vue template text, translation calls, component props, and strings returned by render functions. Search the final bundle when a build step concatenates or transforms text.
 
+## Bundled third-party libraries
+
+A plugin's bundle usually contains library UI text that never passes through the plugin's own i18n layer: Grid.js (`No matching records found`, `Loading...`, `An error happened while fetching the data`), DataTables (`No data available in table`, `Showing _START_ to _END_ of _TOTAL_ entries`), moment/dayjs locale data (month and weekday names, `Invalid date`, relative-time phrases), and clipboard/toast helpers (`Copied to clipboard`).
+
+Treat them as ordinary exact rules, with these cautions:
+
+- Extract from the published `main.js`, not only from `src/`; these strings often exist only in the bundle.
+- Confirm the occurrence count before adding the rule. One occurrence is safe; a phrase that also appears in the plugin's own UI may need a `selector` or `injectSource: false`.
+- Leave template-shaped strings (`Showing _START_ ...`) to a narrow regex or to human review; a plain exact rule will never match them.
+
 ## What counts as user-facing
 
 Include a literal when it is passed to an Obsidian UI API, inserted into visible DOM/HTML, used for accessibility, shown in a notice/modal/error/empty state, registered as a command or setting, or loaded into a Style Settings schema. Include both the base text and variable variants when the UI can show both.
