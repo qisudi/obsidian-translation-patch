@@ -1,0 +1,26 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # No dependencies: the tests load main.js with a stubbed "obsidian" module.
+      - name: Source-injection engine tests
+        run: npm test
+
+      - name: Patch file validation
+        run: node scripts/validate-patches.js patches

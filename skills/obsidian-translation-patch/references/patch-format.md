@@ -87,13 +87,14 @@ Before delivery:
 5. Compare placeholders and markup in source/target. The multiset of `${...}`, `{{...}}`, `%s`/`%d`, numbered `$1` references, HTML tags, Markdown link destinations, and code spans must remain compatible.
 6. Reject source-injection rules that have a selector, are regex rules, target generic tokens (`none`, `true`, `false`, common CSS values), or could alter identifiers/URLs.
 7. Keep a coverage table: translated, intentionally excluded with a reason, dynamic/unreachable, and needs human review.
-8. **Run the bundled validator against the real bundle** when the author can supply `main.js`:
+8. **Run the bundled validators.** Structural checks first, then the bundle-level check when the author can supply `main.js`:
 
    ```bash
+   node scripts/validate-patches.js path/to/patches
    node scripts/validate-source-patch.js path/to/main.js path/to/patch.json
    ```
 
-   A non-zero exit code means at least one rule matched nothing or the injected bundle stopped parsing. Explain every zero-hit rule before delivery: renamed upstream, not in the bundle, code-only occurrence, or rejected target.
+   The first catches placeholder/capture-group mismatches, conflicting duplicates and source-injection hazards. The second reports zero-hit rules and fails if the injected bundle stops parsing. Explain every zero-hit rule before delivery: renamed upstream, not in the bundle, code-only occurrence, or rejected target.
 9. **For plugins still on 0.3.x** (no literal-aware injection), additionally reject source-injection targets that contain a real newline or the delimiter quote of the matched context — the old runtime wrote them verbatim and could break `main.js`. Prefer telling the user to update the plugin instead of hand-escaping.
 10. **Cross-check source and published bundle.** A string can exist in `src/` but be rewritten or renamed at build time, and bundled third-party strings exist only in the bundle. Extraction is not complete until both have been inspected.
 11. **Compare against the official locale when one exists.** Record keys that are missing from the official locale (add them to the patch) and keys whose official value is stale English or a mistranslation (add a runtime correction rule; use `injectSource: false` if the same text appears multiple times in the bundle).

@@ -88,9 +88,14 @@
 # 单元测试：转义、CJK 转义形态、双变体兼容、词法器、性能预算
 node scripts/test-source-inject.js
 
+# 补丁结构校验：必填字段、占位符、捕获组、重复规则、源码注入风险
+node scripts/validate-patches.js patches
+
 # 用真实 bundle 校验一个补丁，输出每条规则的命中情况；有零命中则退出码为 1
 node scripts/validate-source-patch.js path/to/target/main.js path/to/patch.json [out.js]
 ```
+
+前两个脚本在每次 push 和 PR 时由 `.github/workflows/test.yml` 执行：结构错误会让 CI 失败，警告只打印不拦截。
 
 ## 给其他 Agent 使用
 
@@ -110,3 +115,4 @@ node scripts/validate-source-patch.js path/to/target/main.js path/to/patch.json 
 - 新增“规则命中诊断”面板与重新加载时的零命中提示，补丁作者不必再靠外部模拟脚本排查漏翻。
 - 命令名翻译改为预建索引，周期性刷新不再对每条规则重复归一化；界面文字快照会清理已脱离文档的节点，长时间使用不再累积内存。
 - `scripts/validate-style-settings-source-patch.js` 由 `scripts/validate-source-patch.js` 取代，后者复用 `main.js` 中的同一套注入引擎。
+- 新增 `scripts/validate-patches.js` 与 GitHub Actions：每次 push/PR 自动跑注入引擎测试和补丁结构校验。

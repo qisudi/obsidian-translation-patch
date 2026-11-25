@@ -1445,11 +1445,14 @@ class TranslationPatchPlugin extends Plugin {
   translateStructuredString(value) {
     if (value == null || value === "") return value;
     let result = String(value);
-    for (const { entry, regex } of this.getStyleSettingsEntries()) {
+    for (const { entry, regex, stat } of this.getStyleSettingsEntries()) {
       if (regex) {
+        const before = result;
         result = result.replace(regex, entry.target);
+        if (result !== before && stat) stat.runtimeHits += 1;
       } else if (result === entry.source || normaliseText(result) === normaliseText(entry.source)) {
         result = entry.target;
+        if (stat) stat.runtimeHits += 1;
       }
     }
     return result;

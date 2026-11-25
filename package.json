@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node scripts/test-source-inject.js",
     "validate": "node scripts/validate-source-patch.js",
+    "validate:patches": "node scripts/validate-patches.js patches",
     "generate:minimal": "node scripts/generate-minimal-style-settings-patch.js",
     "generate:blue-topaz": "node scripts/generate-blue-topaz-style-settings-patch.js"
   },
